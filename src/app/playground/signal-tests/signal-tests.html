@@ -1,0 +1,17 @@
+<div class="container flex w-full space-x-3 justify-center mx-auto items-center">
+  <app-badge color="primary" [text]="text()">
+    <ng-icon name="heroSignalSolid"> </ng-icon>
+  </app-badge>
+
+  <app-button title="Increment" color="primary" (click)="increment()">
+    <ng-icon name="heroPlusCircleSolid"> </ng-icon>
+  </app-button>
+
+  <app-button title="Decrement" color="secondary" (click)="decrement()">
+    <ng-icon name="heroMinusCircleSolid"> </ng-icon>
+  </app-button>
+
+  <app-button title="Reset" color="warning" (click)="reset()">
+    <ng-icon name="heroArrowPathSolid"> </ng-icon>
+  </app-button>
+</div>

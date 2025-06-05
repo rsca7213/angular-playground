@@ -1,10 +1,11 @@
 import { Component, computed, input } from '@angular/core';
 import { appColors } from '../../types/colors';
 import { colorContrast } from '../../constants/color-contrast';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-button',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './button.html'
 })
 export class Button {
@@ -12,6 +13,7 @@ export class Button {
     'rounded-lg text-md py-2 px-3 transition-colors duration-200 cursor-pointer';
   readonly title = input.required<string>();
   readonly color = input.required<appColors>();
+  readonly redirectTo = input<string | string[] | null>(null);
 
   // Auto-generate button classes
   protected buttonClasses = computed(

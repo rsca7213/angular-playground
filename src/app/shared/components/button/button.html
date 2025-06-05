@@ -1,11 +1,4 @@
-@if (redirectTo() !== null) {
-<a [routerLink]="redirectTo()" [class]="buttonClasses()">
-  <ng-content></ng-content>
-  {{ title() }}
-</a>
-} @else {
-<button type="button" [class]="buttonClasses()">
+<button type="button" [class]="buttonClasses()" [routerLink]="redirectTo()">
   <ng-content></ng-content>
   {{ title() }}
 </button>
-}

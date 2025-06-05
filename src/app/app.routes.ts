@@ -24,5 +24,15 @@ export const routes: Routes = [
     loadComponent: () => import('./login/login').then((m) => m.Login),
     title: 'Login',
     data: { needsAuth: false }
+  },
+  {
+    path: 'home',
+    redirectTo: ''
+  },
+  {
+    path: '**',
+    loadComponent: () => import('./not-found/not-found').then((m) => m.NotFound),
+    title: 'Not Found',
+    data: { needsAuth: false }
   }
 ];

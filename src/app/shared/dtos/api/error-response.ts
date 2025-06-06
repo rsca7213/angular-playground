@@ -1,6 +1,6 @@
 import { HttpStatusCode } from '@angular/common/http';
 
-export interface ApiErrorResponse {
+export interface IApiErrorResponse {
   status: HttpStatusCode;
   statusText: string;
   message: string;

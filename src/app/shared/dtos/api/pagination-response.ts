@@ -1,4 +1,4 @@
-export interface ApiPaginationResponse<T> {
+export interface IApiPaginationResponse<T> {
   page: number;
   perPage: number;
   totalItems: number;

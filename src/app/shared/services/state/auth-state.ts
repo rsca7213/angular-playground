@@ -28,4 +28,10 @@ export class AuthState {
   public setAuthToken(token: string): void {
     this.authToken = token;
   }
+
+  public clearAuth(): void {
+    this.authUser = null;
+    this.isAuthenticated = false;
+    this.authToken = null;
+  }
 }

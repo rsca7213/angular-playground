@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IApiLoginUserBody } from '../../../dtos/api/auth/api-login-user-body';
-import { firstValueFrom, Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { IApiLoginUserResponse } from '../../../dtos/api/auth/api-login-user-response';
 import { ENVIRONMENT } from '../../../../../environments/environment';
 import { AuthState } from '../../state/auth-state';
@@ -22,10 +22,11 @@ export class ApiAuth {
     // Attempt a login request
     const response = await firstValueFrom(
       this.http.post<IApiLoginUserResponse>(`${ENVIRONMENT.apiUrl}/auth/login`, request)
-    ).catch((err: IApiErrorResponse) => err);
+    ).catch((err: HttpErrorResponse) => err.error as IApiErrorResponse);
 
     // If the response is an error, return it
     if ('errorCode' in response) {
+      this.authState.clearAuth();
       return response;
     }
 
@@ -35,11 +36,14 @@ export class ApiAuth {
 
     // Fetch the current user details
     const currentUserResponse = await firstValueFrom(
-      this.http.get<IApiCurrentUserResponse>(`${ENVIRONMENT.apiUrl}/auth/current-user`)
-    ).catch((err: IApiErrorResponse) => err);
+      this.http.get<IApiCurrentUserResponse>(`${ENVIRONMENT.apiUrl}/auth/current-user`, {
+        headers: { Authorization: `Bearer ${response.token}` }
+      })
+    ).catch((err: HttpErrorResponse) => err.error as IApiErrorResponse);
 
     // If the current user response is an error, return it
     if ('errorCode' in currentUserResponse) {
+      this.authState.clearAuth();
       return currentUserResponse;
     }
 

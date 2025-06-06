@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Button } from '../shared/components/button/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroHomeSolid, heroQuestionMarkCircleSolid } from '@ng-icons/heroicons/solid';
+import { Button } from '../../../shared/ui/button/button';
 
 @Component({
   selector: 'app-not-found',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SignalTests } from './signal-tests/signal-tests';
+import { SignalTests } from '../ui/signal-tests/signal-tests';
 
 @Component({
   selector: 'app-playground',

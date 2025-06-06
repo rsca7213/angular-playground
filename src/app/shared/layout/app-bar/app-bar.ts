@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroHomeSolid, heroPlaySolid, heroShoppingCartSolid } from '@ng-icons/heroicons/solid';
-import { Button } from '../button/button';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Button } from '../../ui/button/button';
 
 @Component({
   selector: 'app-app-bar',

@@ -6,8 +6,8 @@ import {
   heroPlusCircleSolid,
   heroSignalSolid
 } from '@ng-icons/heroicons/solid';
-import { Button } from '../../shared/components/button/button';
-import { Badge } from '../../shared/components/badge/badge';
+import { Button } from '../../../../shared/ui/button/button';
+import { Badge } from '../../../../shared/ui/badge/badge';
 
 @Component({
   selector: 'app-signal-tests',

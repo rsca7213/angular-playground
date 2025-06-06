@@ -3,25 +3,25 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./home/home').then((m) => m.Home),
+    loadComponent: () => import('./core/pages/home/home').then((m) => m.Home),
     title: 'Home',
     data: { needsAuth: true }
   },
   {
     path: 'playground',
-    loadComponent: () => import('./playground/playground').then((m) => m.Playground),
+    loadComponent: () => import('./routes/playground/pages/playground').then((m) => m.Playground),
     title: 'Playground',
     data: { needsAuth: true }
   },
   {
     path: 'products',
-    loadComponent: () => import('./products/products').then((m) => m.Products),
+    loadComponent: () => import('./routes/products/pages/products').then((m) => m.Products),
     title: 'Products',
     data: { needsAuth: true }
   },
   {
     path: 'login',
-    loadComponent: () => import('./login/login').then((m) => m.Login),
+    loadComponent: () => import('./core/pages/login/login').then((m) => m.Login),
     title: 'Login',
     data: { needsAuth: false }
   },
@@ -31,7 +31,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    loadComponent: () => import('./not-found/not-found').then((m) => m.NotFound),
+    loadComponent: () => import('./core/pages/not-found/not-found').then((m) => m.NotFound),
     title: 'Not Found',
     data: { needsAuth: false }
   }

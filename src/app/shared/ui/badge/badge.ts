@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { appColors } from '../../types/colors';
+import { TAppColors } from '../../types/colors';
 import { colorContrast } from '../../constants/color-contrast';
 
 @Component({
@@ -9,7 +9,7 @@ import { colorContrast } from '../../constants/color-contrast';
 })
 export class Badge {
   public readonly text = input.required<string>();
-  public readonly color = input.required<appColors>();
+  public readonly color = input.required<TAppColors>();
 
   // Auto-generate classes
   protected classes = computed(() => `bg-${this.color()} text-${this.getTextColor()}`);

@@ -1,6 +1,6 @@
-import { appColors } from '../types/colors';
+import { TAppColors } from '../types/colors';
 
-export const colorContrast: Map<appColors, appColors> = new Map([
+export const colorContrast: Map<TAppColors, TAppColors> = new Map([
   ['primary', 'light'],
   ['secondary', 'light'],
   ['success', 'light'],

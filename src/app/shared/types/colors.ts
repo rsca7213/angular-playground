@@ -1,4 +1,4 @@
-export type appColors =
+export type TAppColors =
   | 'primary'
   | 'secondary'
   | 'success'

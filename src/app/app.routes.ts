@@ -9,13 +9,13 @@ export const routes: Routes = [
   },
   {
     path: 'playground',
-    loadComponent: () => import('./routes/playground/pages/playground').then((m) => m.Playground),
+    loadComponent: () => import('./modules/playground/pages/playground').then((m) => m.Playground),
     title: 'Playground',
     data: { needsAuth: true }
   },
   {
     path: 'products',
-    loadComponent: () => import('./routes/products/pages/products').then((m) => m.Products),
+    loadComponent: () => import('./modules/products/pages/products').then((m) => m.Products),
     title: 'Products',
     data: { needsAuth: true }
   },

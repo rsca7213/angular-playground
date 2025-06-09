@@ -1,0 +1,9 @@
+<div class="p-2 mb-4 bg-{{ color() }}-light text-{{ color() }} rounded-lg shadow-md font-medium">
+  <div class="flex justify-center items-center">
+    <ng-content></ng-content>
+    <span class="ml-2"> {{ message() }} </span>
+    <app-icon-button [color]="color()" (click)="dismiss()" class="ml-auto">
+      <ng-icon name="heroXMarkSolid"></ng-icon>
+    </app-icon-button>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div
+  class="flex items-center max-w-sm w-full bg-{{
+    color()
+  }} absolute top-5 left-1/2 transform -translate-x-1/2 text-light p-4 font-medium rounded-3xl shadow-xl"
+>
+  <div class="text-2xl mr-1 flex items-center">
+    <ng-content></ng-content>
+  </div>
+  {{ message() }}
+  <app-icon-button color="light" class="text-2xl ml-auto">
+    <ng-icon name="heroXMarkSolid"></ng-icon>
+  </app-icon-button>
+</div>

@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 export abstract class FormUtils {
   protected loading = signal(false);
   protected submissionError = signal<string | null>(null);
+  protected success = signal(false);
   protected abstract readonly form: FormGroup;
   protected abstract submitLogic(): Promise<void>;
 

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormInput } from '../../../shared/ui/form-input/form-input';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Button } from '../../../shared/ui/button/button';
@@ -9,17 +9,19 @@ import { ApiAuth } from '../../../shared/services/api/auth/api-auth';
 import { Alert } from '../../../shared/ui/alert/alert';
 import { Router } from '@angular/router';
 import { Card } from '../../../shared/ui/card/card';
-import { heroExclamationTriangle } from '@ng-icons/heroicons/outline';
+import { heroCheckCircle, heroExclamationTriangle } from '@ng-icons/heroicons/outline';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [FormInput, Button, ReactiveFormsModule, NgIcon, Alert, Card],
+  imports: [FormInput, Button, ReactiveFormsModule, NgIcon, Alert, Card, NgOptimizedImage],
   templateUrl: './login.html',
   providers: [
     provideIcons({
       heroArrowRightEndOnRectangleSolid,
       heroLockClosedSolid,
-      heroExclamationTriangle
+      heroExclamationTriangle,
+      heroCheckCircle
     })
   ]
 })
@@ -46,6 +48,7 @@ export class Login extends FormUtils {
     }
 
     // If login is successful, redirect to the home page
+    this.success.set(true);
     this.router.navigate(['/']);
   }
 }

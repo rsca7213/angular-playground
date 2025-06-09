@@ -1,24 +1,23 @@
 @if (display()) {
-<nav class="sticky w-full top-0 bg-light p-4">
-  <div class="container mx-auto flex justify-between items-center">
-    <div>
-      <a href="#" class="text-xl font-bold flex items-center">
-        <img src="angular.png" alt="Angular Logo" class="h-10 mr-3" />
-        Angular 20 Playground
-      </a>
-    </div>
+  <nav class="sticky w-full top-0 bg-light p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <div>
+        <a href="#" class="text-xl font-bold flex items-center">
+          <img src="angular-full.png" alt="Angular Logo" class="h-12 mr-3" />
+        </a>
+      </div>
 
-    <div class="flex items-center space-x-4">
-      <app-button title="Home" color="primary" redirectTo="/">
-        <ng-icon name="heroHomeSolid"> </ng-icon>
-      </app-button>
-      <app-button title="Playground" color="primary" redirectTo="/playground">
-        <ng-icon name="heroPlaySolid"> </ng-icon>
-      </app-button>
-      <app-button title="Products" color="primary" redirectTo="/products">
-        <ng-icon name="heroShoppingCartSolid"> </ng-icon>
-      </app-button>
+      <div class="flex items-center space-x-4">
+        <app-button title="Home" color="primary" redirectTo="/">
+          <ng-icon name="heroHomeSolid"> </ng-icon>
+        </app-button>
+        <app-button title="Playground" color="primary" redirectTo="/playground">
+          <ng-icon name="heroPlaySolid"> </ng-icon>
+        </app-button>
+        <app-button title="Products" color="primary" redirectTo="/products">
+          <ng-icon name="heroShoppingCartSolid"> </ng-icon>
+        </app-button>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 }

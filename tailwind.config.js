@@ -9,7 +9,7 @@ module.exports = {
     'bg-primary',
     'bg-secondary',
     'bg-success',
-    'bg-danger',
+    'bg-error',
     'bg-warning',
     'bg-info',
     'bg-light',
@@ -17,10 +17,16 @@ module.exports = {
     'text-primary',
     'text-secondary',
     'text-success',
-    'text-danger',
+    'text-error',
     'text-warning',
     'text-info',
     'text-light',
-    'text-dark'
+    'text-dark',
+    'bg-primary-light',
+    'bg-secondary-light',
+    'bg-success-light',
+    'bg-error-light',
+    'bg-warning-light',
+    'bg-info-light'
   ]
 };

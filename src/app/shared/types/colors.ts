@@ -2,7 +2,7 @@ export type TAppColors =
   | 'primary'
   | 'secondary'
   | 'success'
-  | 'danger'
+  | 'error'
   | 'warning'
   | 'info'
   | 'light'

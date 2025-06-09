@@ -4,7 +4,7 @@ export const colorContrast: Map<TAppColors, TAppColors> = new Map([
   ['primary', 'light'],
   ['secondary', 'light'],
   ['success', 'light'],
-  ['danger', 'light'],
+  ['error', 'light'],
   ['warning', 'dark'],
   ['info', 'dark'],
   ['light', 'dark'],

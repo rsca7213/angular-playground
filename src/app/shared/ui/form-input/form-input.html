@@ -1,0 +1,28 @@
+<div class="mb-3">
+  <label [for]="id()" class="block font-medium ml-2 mb-1"> {{ label() }} </label>
+  @switch (type()) {
+    @case ('text') {
+      <input
+        type="text"
+        [id]="id()"
+        [required]="required()"
+        [formControl]="control()"
+        [placeholder]="placeholder()"
+        class="bg-light w-full focus:outline-none p-2 rounded-xl border-dark border placeholder:text-placeholder focus:ring focus:ring-primary-focus focus:border-primary"
+      />
+    }
+    @case ('password') {
+      <input
+        type="password"
+        [id]="id()"
+        [required]="required()"
+        [formControl]="control()"
+        [placeholder]="placeholder()"
+        class="bg-light w-full focus:outline-none p-2 rounded-xl border-dark border placeholder:text-placeholder focus:ring focus:ring-primary-focus focus:border-primary"
+      />
+    }
+  }
+  @if (hint()) {
+    <p class="text-xs text-placeholder mt-1 ml-2">{{ hint() }}</p>
+  }
+</div>

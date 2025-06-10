@@ -1,10 +1,11 @@
-import { booleanAttribute, Component, computed, input } from '@angular/core';
+import { booleanAttribute, Component, computed, contentChild, input } from '@angular/core';
 import { TAppColors } from '../../types/colors';
 import { colorContrast } from '../../constants/color-contrast';
 import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroArrowPathSolid } from '@ng-icons/heroicons/solid';
 import { TButtonType } from '../../types/buttons';
+import { TBreakpoint } from '../../types/breakpoints';
 
 @Component({
   selector: 'app-button',
@@ -21,6 +22,13 @@ export class Button {
   readonly full = input(false, { transform: booleanAttribute });
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly loading = input(false, { transform: booleanAttribute });
+  readonly limitTitleFromBreakpoint = input<TBreakpoint | null>(null);
+
+  // Content child for icon, allowing to check if an icon is provided
+  protected readonly icon = contentChild(NgIcon);
+  protected readonly hasIcon = computed(() => {
+    return Boolean(this.icon());
+  });
 
   private readonly defaultClasses =
     'rounded-lg text-md py-2 px-3 transition-colors duration-200 cursor-pointer flex items-center justify-center';

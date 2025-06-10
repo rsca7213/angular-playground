@@ -2,25 +2,51 @@
   <nav class="sticky w-full top-0 bg-light p-4">
     <div class="container mx-auto flex items-center">
       <div>
-        <a href="#" class="text-xl font-bold flex items-center">
+        <a href="#" class="text-xl font-bold items-center hidden sm:flex">
           <img ngSrc="angular-full.png" alt="Angular Logo" width="160" height="50" priority />
+        </a>
+        <a href="#" class="text-xl font-bold items-center sm:hidden">
+          <img
+            ngSrc="angular.png"
+            alt="Angular Logo"
+            width="50"
+            height="50"
+            priority
+            class="pr-1"
+          />
         </a>
       </div>
 
       <div class="flex-centered-v-h space-x-2 ml-auto">
-        <app-button title="Home" color="primary" redirectTo="/">
+        <app-button title="Home" color="primary" redirectTo="/" limitTitleFromBreakpoint="md">
           <ng-icon name="heroHomeSolid"> </ng-icon>
         </app-button>
-        <app-button title="Playground" color="primary" redirectTo="/playground">
+        <app-button
+          title="Playground"
+          color="primary"
+          redirectTo="/playground"
+          limitTitleFromBreakpoint="md"
+        >
           <ng-icon name="heroPlaySolid"> </ng-icon>
         </app-button>
-        <app-button title="Products" color="primary" redirectTo="/products">
+        <app-button
+          title="Products"
+          color="primary"
+          redirectTo="/products"
+          limitTitleFromBreakpoint="md"
+        >
           <ng-icon name="heroShoppingCartSolid"> </ng-icon>
         </app-button>
       </div>
 
       <div class="flex-centered-v-h ml-2">
-        <app-button title="Logout" color="secondary" (click)="logout()">
+        <app-button
+          title="Logout"
+          color="secondary"
+          (click)="logout()"
+          [loading]="logoutLoading"
+          limitTitleFromBreakpoint="md"
+        >
           <ng-icon name="heroArrowLeftStartOnRectangle"> </ng-icon>
         </app-button>
       </div>

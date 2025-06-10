@@ -24,6 +24,7 @@ export class AppBar implements OnInit {
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly apiAuth = inject(ApiAuth);
+  protected logoutLoading = false;
 
   protected display = signal<boolean>(false);
 
@@ -48,6 +49,8 @@ export class AppBar implements OnInit {
   }
 
   public async logout(): Promise<void> {
+    this.logoutLoading = true;
     await this.apiAuth.logout();
+    this.logoutLoading = false;
   }
 }

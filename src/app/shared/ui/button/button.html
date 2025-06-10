@@ -4,14 +4,23 @@
   [routerLink]="redirectTo()"
   [disabled]="disabled() || loading()"
 >
-  <div class="space-x-0.5 flex-centered-v-h min-h-6 min-w-4">
+  <div
+    class="flex-centered-v-h min-h-6 min-w-4"
+    [class]="hasIcon() ? limitTitleFromBreakpoint() ? `${limitTitleFromBreakpoint()}:space-x-1` : 'space-x-1' : ''"
+  >
     @if (loading()) {
       <ng-icon class="animate-spin" name="heroArrowPathSolid"> </ng-icon>
       Loading...
     } @else {
       <ng-content></ng-content>
       @if (title().length) {
-        <span> {{ title() }} </span>
+        <span
+          [class]="
+            limitTitleFromBreakpoint() ? `hidden ${limitTitleFromBreakpoint()}:inline` : ''
+          "
+        >
+          {{ title() }}
+        </span>
       }
     }
   </div>

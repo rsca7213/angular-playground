@@ -27,6 +27,7 @@ module.exports = {
     'bg-success-light',
     'bg-error-light',
     'bg-warning-light',
-    'bg-info-light'
+    'bg-info-light',
+    'md:space-x-1'
   ]
 };

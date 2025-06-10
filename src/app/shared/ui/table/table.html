@@ -1,0 +1,115 @@
+<div class="relative overflow-x-auto rounded-2xl border border-primary shadow-lg">
+  <table class="w-full">
+    <thead class="bg-primary text-white">
+      <tr>
+        @if (config.displayIndexColumn) {
+          <th class="text-center">#</th>
+        }
+        @for (column of config.columns; track $index) {
+          <th
+            [class.text-center]="column.align === 'center'"
+            [class.text-right]="column.align === 'right'"
+            [class.text-left]="column.align === 'left'"
+          >
+            {{ column.label }}
+          </th>
+        }
+        @if (hasActions()) {
+          <th class="text-center">Actions</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @if (errorMessage()) {
+        <tr class="bg-light">
+          <td
+            [colSpan]="
+              config.columns.length + (config.displayIndexColumn ? 1 : 0) + (hasActions() ? 1 : 0)
+            "
+          >
+            <div class="py-6">
+              <div class="flex-centered-v-h text-error">
+                <span>
+                  <ng-icon name="heroExclamationTriangleSolid"></ng-icon>
+                </span>
+                <span class="ml-2">
+                  {{ config.defaultErrorMessage || 'An error occurred while loading the data.' }}
+                </span>
+              </div>
+              <p class="text-muted text-center text-sm">
+                <span class="font-bold"> Details: </span>
+                {{ errorMessage() }}
+              </p>
+            </div>
+          </td>
+        </tr>
+      } @else if (loading()) {
+        <tr class="bg-light">
+          <td
+            [colSpan]="
+              config.columns.length + (config.displayIndexColumn ? 1 : 0) + (hasActions() ? 1 : 0)
+            "
+          >
+            <div class="flex-centered-v-h py-6">
+              <span>
+                <ng-icon name="heroArrowPathSolid" class="animate-spin"> </ng-icon>
+              </span>
+              <span class="ml-2">Loading, please wait...</span>
+            </div>
+          </td>
+        </tr>
+      } @else {
+        @for (item of data(); track item.id; let index = $index) {
+          <tr class="bg-light" [class.bg-light-accent]="index % 2 === 1">
+            @if (config.displayIndexColumn) {
+              <td class="text-center">{{ index + (config.indexFrom || 0) + 1 }}</td>
+            }
+            @for (column of config.columns; track $index) {
+              <td
+                [class.text-center]="column.align === 'center'"
+                [class.text-right]="column.align === 'right'"
+                [class.text-left]="column.align === 'left'"
+              >
+                {{ applyPipes(column, item[column.name]) }}
+              </td>
+            }
+            @if (hasActions()) {
+              <td>
+                <div class="flex-centered-v-h">
+                  @if (config.actions.view) {
+                    <app-icon-button color="dark">
+                      <ng-icon name="heroEyeSolid"></ng-icon>
+                    </app-icon-button>
+                  }
+                  @if (config.actions.update) {
+                    <app-icon-button color="dark">
+                      <ng-icon name="heroPencilSolid"></ng-icon>
+                    </app-icon-button>
+                  }
+                  @if (config.actions.delete) {
+                    <app-icon-button color="dark">
+                      <ng-icon name="heroTrashSolid"></ng-icon>
+                    </app-icon-button>
+                  }
+                </div>
+              </td>
+            }
+          </tr>
+        } @empty {
+          <tr class="bg-light">
+            <td
+              [colSpan]="
+                config.columns.length + (config.displayIndexColumn ? 1 : 0) + (hasActions() ? 1 : 0)
+              "
+            >
+              <div class="flex-centered-v-h py-6 text-muted">
+                <ng-icon name="heroNoSymbolSolid"> </ng-icon>
+                <span class="ml-2">No data available.</span>
+              </div>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

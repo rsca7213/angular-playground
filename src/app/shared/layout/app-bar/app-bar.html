@@ -1,13 +1,13 @@
 @if (display()) {
   <nav class="sticky w-full top-0 bg-light p-4">
-    <div class="container mx-auto flex justify-between items-center">
+    <div class="container mx-auto flex items-center">
       <div>
         <a href="#" class="text-xl font-bold flex items-center">
-          <img src="angular-full.png" alt="Angular Logo" class="h-12 mr-3" />
+          <img ngSrc="angular-full.png" alt="Angular Logo" width="160" height="50" />
         </a>
       </div>
 
-      <div class="flex items-center space-x-4">
+      <div class="flex-centered-v-h space-x-2 ml-auto">
         <app-button title="Home" color="primary" redirectTo="/">
           <ng-icon name="heroHomeSolid"> </ng-icon>
         </app-button>
@@ -16,6 +16,12 @@
         </app-button>
         <app-button title="Products" color="primary" redirectTo="/products">
           <ng-icon name="heroShoppingCartSolid"> </ng-icon>
+        </app-button>
+      </div>
+
+      <div class="flex-centered-v-h ml-2">
+        <app-button title="Logout" color="secondary" (click)="logout()">
+          <ng-icon name="heroArrowLeftStartOnRectangle"> </ng-icon>
         </app-button>
       </div>
     </div>

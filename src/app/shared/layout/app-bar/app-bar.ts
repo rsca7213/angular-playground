@@ -3,16 +3,27 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroHomeSolid, heroPlaySolid, heroShoppingCartSolid } from '@ng-icons/heroicons/solid';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Button } from '../../ui/button/button';
+import { heroArrowLeftStartOnRectangle } from '@ng-icons/heroicons/outline';
+import { ApiAuth } from '../../services/api/auth/api-auth';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-app-bar',
-  imports: [NgIcon, Button],
+  imports: [NgIcon, Button, NgOptimizedImage],
   templateUrl: './app-bar.html',
-  viewProviders: [provideIcons({ heroHomeSolid, heroPlaySolid, heroShoppingCartSolid })]
+  viewProviders: [
+    provideIcons({
+      heroHomeSolid,
+      heroPlaySolid,
+      heroShoppingCartSolid,
+      heroArrowLeftStartOnRectangle
+    })
+  ]
 })
 export class AppBar implements OnInit {
   private readonly router = inject(Router);
   private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly apiAuth = inject(ApiAuth);
 
   protected display = signal<boolean>(false);
 
@@ -34,5 +45,9 @@ export class AppBar implements OnInit {
         this.display.set(requiresAuth);
       }
     });
+  }
+
+  public async logout(): Promise<void> {
+    await this.apiAuth.logout();
   }
 }

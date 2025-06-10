@@ -35,3 +35,7 @@
 
   --color-placeholder: var(--color-gray-400);
 }
+
+.flex-centered-v-h {
+  @apply flex justify-center items-center;
+}

@@ -1,29 +1,34 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './shared/guards/auth-guard';
 
 export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./core/pages/home/home').then((m) => m.Home),
     title: 'Home',
-    data: { needsAuth: true }
+    data: { needsAuth: true },
+    canActivate: [authGuard]
   },
   {
     path: 'playground',
     loadComponent: () => import('./modules/playground/pages/playground').then((m) => m.Playground),
     title: 'Playground',
-    data: { needsAuth: true }
+    data: { needsAuth: true },
+    canActivate: [authGuard]
   },
   {
     path: 'products',
     loadComponent: () => import('./modules/products/pages/products').then((m) => m.Products),
     title: 'Products',
-    data: { needsAuth: true }
+    data: { needsAuth: true },
+    canActivate: [authGuard]
   },
   {
     path: 'login',
     loadComponent: () => import('./core/pages/login/login').then((m) => m.Login),
     title: 'Login',
-    data: { needsAuth: false }
+    data: { needsAuth: false, ifAuthenticatedRedirect: '/' },
+    canActivate: [authGuard]
   },
   {
     path: 'home',

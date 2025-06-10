@@ -1,3 +1,5 @@
+// api-auth.ts (Revised)
+
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IApiLoginUserBody } from '../../../dtos/api/auth/api-login-user-body';
@@ -8,6 +10,7 @@ import { AuthState } from '../../state/auth-state';
 import { IAuthUser } from '../../../dtos/state/auth-user';
 import { IApiErrorResponse } from '../../../dtos/api/error-response';
 import { IApiCurrentUserResponse } from '../../../dtos/api/auth/api-current-user-response';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +18,7 @@ import { IApiCurrentUserResponse } from '../../../dtos/api/auth/api-current-user
 export class ApiAuth {
   private readonly http = inject(HttpClient);
   private readonly authState = inject(AuthState);
+  private readonly router = inject(Router);
 
   public constructor() {}
 
@@ -24,33 +28,46 @@ export class ApiAuth {
       this.http.post<IApiLoginUserResponse>(`${ENVIRONMENT.apiUrl}/auth/login`, request)
     ).catch((err: HttpErrorResponse) => err.error as IApiErrorResponse);
 
-    // If the response is an error, return it
+    // If the response is an error, clear state and return the error
     if ('errorCode' in response) {
       this.authState.clearAuth();
       return response;
     }
 
-    // If the response is a successful login and a token is present
-    // Set the auth user and token in the state
-    this.authState.setAuthToken(response.token);
+    // On successful login, fetch the full user details
+    return await this.getCurrentUser();
+  }
 
+  public async getCurrentUser(): Promise<IAuthUser | IApiErrorResponse> {
     // Fetch the current user details
-    const currentUserResponse = await firstValueFrom(
-      this.http.get<IApiCurrentUserResponse>(`${ENVIRONMENT.apiUrl}/auth/current-user`, {
-        headers: { Authorization: `Bearer ${response.token}` }
-      })
+    const response = await firstValueFrom(
+      this.http.get<IApiCurrentUserResponse>(`${ENVIRONMENT.apiUrl}/auth/current-user`)
     ).catch((err: HttpErrorResponse) => err.error as IApiErrorResponse);
 
-    // If the current user response is an error, return it
-    if ('errorCode' in currentUserResponse) {
-      this.authState.clearAuth();
-      return currentUserResponse;
+    // Determine if the user is authenticated based on the response
+    const isUserAuthenticated = this.authState.setAuthUser(response);
+
+    // If the user is not authenticated
+    if (!isUserAuthenticated) {
+      return response as IApiErrorResponse;
     }
 
-    // Set the authenticated user in the state
-    this.authState.setAuthUser(currentUserResponse);
+    // Return the newly fetched user
+    return response;
+  }
 
-    // Return the authenticated user
-    return this.authState.getAuthUser() as IAuthUser;
+  public async logout(): Promise<void> {
+    // Attempt to log out the user
+    await firstValueFrom(this.http.post(`${ENVIRONMENT.apiUrl}/auth/logout`, {})).catch(
+      (err: HttpErrorResponse) => {
+        return err.error as IApiErrorResponse;
+      }
+    );
+
+    // Clear the authentication state
+    this.authState.clearAuth();
+
+    // Redirect to the login page
+    this.router.navigate(['/login']);
   }
 }

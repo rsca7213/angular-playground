@@ -1,1 +1,11 @@
-<p>products works!</p>
+<app-products-table
+  [data]="products.items"
+  [loading]="loading"
+  [errorMessage]="errorMessage"
+></app-products-table>
+
+@if (!loading && !errorMessage) {
+  <div class="mt-3">
+    <app-pagination [information]="products" (goToPage)="goToPage($event)"></app-pagination>
+  </div>
+}

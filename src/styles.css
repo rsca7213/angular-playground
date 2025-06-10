@@ -26,16 +26,25 @@
   --color-info-light: var(--color-sky-200);
 
   --color-light: var(--color-gray-100);
-  --color-light-focus: var(--color-gray-200);
+  --color-light-accent: var(--color-gray-200);
 
   --color-gray: var(--color-gray-500);
 
   --color-dark: var(--color-gray-900);
   --color-dark-focus: var(--color-gray-800);
 
-  --color-placeholder: var(--color-gray-400);
+  --color-muted: var(--color-gray-400);
 }
 
 .flex-centered-v-h {
   @apply flex justify-center items-center;
+}
+
+td,
+th {
+  @apply px-3 py-2;
+}
+
+table {
+  @apply text-left;
 }

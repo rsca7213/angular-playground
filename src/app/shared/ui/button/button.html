@@ -4,11 +4,15 @@
   [routerLink]="redirectTo()"
   [disabled]="disabled() || loading()"
 >
-  @if (loading()) {
-    <ng-icon class="animate-spin" name="heroArrowPathSolid"> </ng-icon>
-    Loading...
-  } @else {
-    <ng-content></ng-content>
-    <span class="ml-1"> {{ title() }} </span>
-  }
+  <div class="space-x-0.5 flex-centered-v-h min-h-6 min-w-4">
+    @if (loading()) {
+      <ng-icon class="animate-spin" name="heroArrowPathSolid"> </ng-icon>
+      Loading...
+    } @else {
+      <ng-content></ng-content>
+      @if (title().length) {
+        <span> {{ title() }} </span>
+      }
+    }
+  </div>
 </button>

@@ -1,0 +1,49 @@
+<div class="w-full flex-centered-v-h space-x-1">
+  <app-button
+    title=""
+    color="light"
+    [disabled]="information().hasPreviousPage === false"
+    (click)="goToFirstPage()"
+  >
+    <ng-icon name="heroChevronDoubleLeftSolid"></ng-icon>
+  </app-button>
+  <app-button
+    title=""
+    color="light"
+    [disabled]="information().hasPreviousPage === false"
+    (click)="previousPage()"
+  >
+    <ng-icon name="heroChevronLeftSolid"></ng-icon>
+  </app-button>
+  @for (pageIndex of pageRange(); track pageIndex) {
+    <app-button
+      [title]="pageIndex.toString()"
+      [color]="pageIndex === information().page ? 'primary' : 'light'"
+      [disabled]="pageIndex === information().page"
+      (click)="goToPageNumber(pageIndex)"
+    >
+    </app-button>
+  }
+  <app-button
+    title=""
+    color="light"
+    [disabled]="information().hasNextPage === false"
+    (click)="nextPage()"
+  >
+    <ng-icon name="heroChevronRightSolid"></ng-icon>
+  </app-button>
+  <app-button
+    title=""
+    color="light"
+    [disabled]="information().hasNextPage === false"
+    (click)="goToLastPage()"
+  >
+    <ng-icon name="heroChevronDoubleRightSolid"></ng-icon>
+  </app-button>
+</div>
+<div class="text-center w-full mt-2">
+  <app-badge
+    [text]="`Page ${information().page} of ${information().totalPages}`"
+    color="light"
+  ></app-badge>
+</div>

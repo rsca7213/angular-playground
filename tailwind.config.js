@@ -28,6 +28,7 @@ module.exports = {
     'bg-error-light',
     'bg-warning-light',
     'bg-info-light',
-    'md:space-x-1'
+    'md:space-x-1',
+    'md:inline'
   ]
 };

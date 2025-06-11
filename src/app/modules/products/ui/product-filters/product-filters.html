@@ -1,0 +1,59 @@
+<app-card>
+  <div class="w-full">
+    <form [formGroup]="form">
+      <div class="flex flex-wrap">
+        <div class="px-2 w-full sm:w-1/2 md:w-1/3 lg:w-auto">
+          <app-form-input
+            type="text"
+            id="name"
+            label="Product Name"
+            placeholder="Product Name..."
+            [control]="form.controls.name"
+          ></app-form-input>
+        </div>
+        <div class="px-2 w-full sm:w-1/2 md:w-1/3 lg:w-auto">
+          <app-form-input
+            type="select"
+            id="category"
+            label="Category"
+            placeholder="Select a Category..."
+            [control]="form.controls.category"
+            [options]="productCategoryOptions"
+            [allowNullOption]="true"
+          ></app-form-input>
+        </div>
+        <div class="px-2 w-full sm:w-1/2 md:w-1/3 lg:w-auto">
+          <app-form-input
+            type="number"
+            id="minPrice"
+            label="Min Price"
+            placeholder="Min Price..."
+            [control]="form.controls.minPrice"
+            [min]="0"
+            [step]="0.01"
+          ></app-form-input>
+        </div>
+        <div class="px-2 w-full sm:w-1/2 md:w-1/3 lg:w-auto">
+          <app-form-input
+            type="number"
+            id="maxPrice"
+            label="Max Price"
+            placeholder="Max Price..."
+            [control]="form.controls.maxPrice"
+            [min]="0"
+            [step]="0.01"
+          ></app-form-input>
+        </div>
+        <div class="px-2 w-full sm:w-1/2 md:w-1/3 lg:w-auto">
+          <app-form-input
+            type="toggle"
+            id="hasStock"
+            label="Has Stock?"
+            [control]="form.controls.hasStock"
+            placeholder=""
+          ></app-form-input>
+        </div>
+      </div>
+    </form>
+  </div>
+</app-card>

@@ -1,6 +1,7 @@
-import { Component, input, model } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { TFormInputType } from '../../types/form-inputs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { TSelectOptions } from '../../types/select-options';
 
 @Component({
   selector: 'app-form-input',
@@ -17,5 +18,15 @@ export class FormInput<T> {
   public readonly required = input<boolean>(false);
   public readonly error = input<string | null>(null);
 
+  // Form control for the input
   public readonly control = input.required<FormControl>();
+
+  // Select input specific properties
+  public readonly options = input<TSelectOptions<T> | null>(null);
+  public readonly allowNullOption = input<boolean>(false);
+
+  // Number input specific properties
+  public readonly min = input<number | null>(null);
+  public readonly max = input<number | null>(null);
+  public readonly step = input<number | null>(null);
 }

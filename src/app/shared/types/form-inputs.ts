@@ -1,1 +1,1 @@
-export type TFormInputType = 'text' | 'password';
+export type TFormInputType = 'text' | 'password' | 'select' | 'number' | 'toggle';

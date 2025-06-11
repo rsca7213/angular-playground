@@ -4,22 +4,74 @@
     @case ('text') {
       <input
         type="text"
+        [name]="id()"
         [id]="id()"
         [required]="required()"
         [formControl]="control()"
         [placeholder]="placeholder()"
-        class="bg-light w-full focus:outline-none p-2 rounded-xl border-dark border placeholder:text-muted focus:ring focus:ring-primary-focus focus:border-primary"
+        class="bg-light w-full min-h-11 focus:outline-none p-2 rounded-xl border-dark border placeholder:text-muted focus:ring focus:ring-primary-focus focus:border-primary"
+        [attr.aria-label]="label()"
       />
     }
     @case ('password') {
       <input
         type="password"
+        [name]="id()"
         [id]="id()"
         [required]="required()"
         [formControl]="control()"
         [placeholder]="placeholder()"
-        class="bg-light w-full focus:outline-none p-2 rounded-xl border-dark border placeholder:text-muted focus:ring focus:ring-primary-focus focus:border-primary"
+        class="bg-light w-full min-h-11 focus:outline-none p-2 rounded-xl border-dark border placeholder:text-muted focus:ring focus:ring-primary-focus focus:border-primary"
+        [attr.aria-label]="label()"
       />
+    }
+    @case ('select') {
+      <select
+        [name]="id()"
+        [id]="id()"
+        [required]="required()"
+        [formControl]="control()"
+        class="bg-light w-full min-h-11 focus:outline-none p-2 rounded-xl border-dark border placeholder:text-muted focus:ring focus:ring-primary-focus focus:border-primary"
+        [attr.aria-label]="label()"
+      >
+        <option [ngValue]="null" [disabled]="!allowNullOption()" [hidden]="!allowNullOption()">
+          {{ placeholder() }}
+        </option>
+        @for (option of options(); track $index) {
+          <option [ngValue]="option.value">{{ option.label }}</option>
+        }
+      </select>
+    }
+    @case ('number') {
+      <input
+        type="number"
+        [name]="id()"
+        [id]="id()"
+        [required]="required()"
+        [formControl]="control()"
+        [placeholder]="placeholder()"
+        class="bg-light min-h-11 w-full focus:outline-none p-2 rounded-xl border-dark border placeholder:text-muted focus:ring focus:ring-primary-focus focus:border-primary"
+        [attr.aria-label]="label()"
+        [min]="min()"
+        [max]="max()"
+        [step]="step()"
+      />
+    }
+    @case ('toggle') {
+      <label class="inline-flex items-center cursor-pointer">
+        <input
+          type="checkbox"
+          class="sr-only peer"
+          [id]="id()"
+          [name]="id()"
+          [formControl]="control()"
+          [required]="required()"
+          [attr.aria-label]="label()"
+        />
+        <div
+          class="ml-2 relative w-11 h-6 bg-light-accent peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-light rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"
+        ></div>
+      </label>
     }
   }
   @if (hint()) {

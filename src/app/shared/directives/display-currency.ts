@@ -26,11 +26,54 @@ export class DisplayCurrency implements OnInit {
     this.formatValue();
   }
 
+  private verifyLimits(value: string): string {
+    const numericValue = Number(value);
+    if (this.min() !== null && numericValue < this.min()!) value = this.min()!.toString();
+    if (this.max() !== null && numericValue > this.max()!) value = this.max()!.toString();
+
+    return value;
+  }
+
+  private verifyCommonRegex(value: string): string {
+    // Remove any non-numeric characters except for the decimal point
+    value = value.replace(/[^0-9.]/g, '');
+
+    // Remove leading decimal point
+    value = value.replace(/^\./, '');
+
+    // Remove leading zeros
+    value = value.replace(/^0+(?=\d)/, '');
+
+    return value;
+  }
+
+  private verifyDecimalPlaces(value: string): string {
+    // If decimal places are specified, ensure the value has at most that many decimal places
+    if (this.decimalPlaces() !== null) {
+      const parts = value.split('.');
+      if (parts.length === 2) {
+        parts[1] = parts[1].substring(0, this.decimalPlaces()!);
+        value = parts.join('.');
+      }
+    }
+
+    // Find all ocurrences of a decimal point
+    const decimalPoints = value.match(/\./g) || [];
+
+    // If there are multiple decimal points, remove all but the first one
+    if (decimalPoints.length > 1) {
+      const firstDecimalIndex = value.indexOf('.');
+      value =
+        value.substring(0, firstDecimalIndex + 1) +
+        value.substring(firstDecimalIndex + 1).replace(/\./g, '');
+    }
+
+    return value;
+  }
+
   private formatValue(): void {
     let rawValue: string = this.element.nativeElement.value;
-
-    // Remove any non numeric characters except for the decimal point
-    let value: string = rawValue.replace(/[^0-9.]/g, '');
+    let value: string = rawValue;
 
     // If the value is empty, set it to an empty string
     if (value === '') {
@@ -38,25 +81,12 @@ export class DisplayCurrency implements OnInit {
       return;
     }
 
-    // Remove any leading decimal point
-    value = value.replace(/^\./, '');
+    // Apply transformations
+    value = this.verifyCommonRegex(value);
+    value = this.verifyLimits(value);
+    value = this.verifyDecimalPlaces(value);
 
-    // Remove duplicate decimal points
-    value = value.replace(/\.{2,}/g, '.');
-
-    // Remove leading zeros
-    value = value.replace(/^0+(?=\d)/, '');
-
-    // If the decimal point is present, ensure only exactly the specified number of decimal places
-    const parts = value.split('.');
-    if (parts.length === 2) {
-      value = parts[0] + '.' + parts[1].substring(0, this.decimalPlaces() || 2);
-    }
-
-    // If min or max are set, validate the value
-    const numericValue = Number(value);
-    if (this.min() !== null && numericValue < this.min()!) value = this.min()!.toString();
-    if (this.max() !== null && numericValue > this.max()!) value = this.max()!.toString();
+    console.debug('Formatted value:', value);
 
     // Apply currency pipe formatting
     value =
@@ -68,9 +98,11 @@ export class DisplayCurrency implements OnInit {
       ) || '';
 
     // If the user attempted to type a leading decimal and the pipe removed it, restore it
-    if (rawValue[rawValue.length - 1] === '.') {
+    if (rawValue[rawValue.length - 1] === '.' && !value.includes('.')) {
       value = `${value}.`;
     }
+
+    console.debug('Formatted value with currency:', value);
 
     // Set the formatted value back to the input
     this.element.nativeElement.value = value;

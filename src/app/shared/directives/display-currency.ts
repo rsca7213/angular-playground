@@ -86,8 +86,6 @@ export class DisplayCurrency implements OnInit {
     value = this.verifyLimits(value);
     value = this.verifyDecimalPlaces(value);
 
-    console.debug('Formatted value:', value);
-
     // Apply currency pipe formatting
     value =
       this.currencyPipe.transform(
@@ -101,8 +99,6 @@ export class DisplayCurrency implements OnInit {
     if (rawValue[rawValue.length - 1] === '.' && !value.includes('.')) {
       value = `${value}.`;
     }
-
-    console.debug('Formatted value with currency:', value);
 
     // Set the formatted value back to the input
     this.element.nativeElement.value = value;

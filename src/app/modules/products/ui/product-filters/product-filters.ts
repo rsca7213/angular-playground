@@ -23,8 +23,8 @@ export class ProductFilters implements OnInit {
     name: new FormControl<string | null>(null),
     hasStock: new FormControl<boolean | null>(null),
     category: new FormControl<TProductCategory | null>(null),
-    minPrice: new FormControl<number | null>(null),
-    maxPrice: new FormControl<number | null>(null)
+    minPrice: new FormControl<string | null>(null),
+    maxPrice: new FormControl<string | null>(null)
   });
 
   public ngOnInit(): void {
@@ -44,8 +44,14 @@ export class ProductFilters implements OnInit {
         if (form.name && form.name.trim()) filters.name = form.name.trim();
         if (form.hasStock !== null) filters.hasStock = form.hasStock;
         if (form.category) filters.category = form.category;
-        if (form.minPrice !== null) filters.minPrice = form.minPrice;
-        if (form.maxPrice !== null) filters.maxPrice = form.maxPrice;
+        if (form.minPrice) {
+          const minPrice = form.minPrice.replace(/[^0-9.]/g, '');
+          filters.minPrice = Number(minPrice);
+        }
+        if (form.maxPrice) {
+          const maxPrice = form.maxPrice.replace(/[^0-9.]/g, '');
+          filters.maxPrice = Number(maxPrice);
+        }
 
         // Emit the filters
         this.apply.emit(filters);

@@ -57,6 +57,23 @@
         [step]="step()"
       />
     }
+    @case ('currency') {
+      <input
+        type="text"
+        appDisplayCurrency
+        [name]="id()"
+        [id]="id()"
+        [required]="required()"
+        [formControl]="control()"
+        [placeholder]="placeholder()"
+        class="bg-light min-h-11 w-full focus:outline-none p-2 rounded-xl border-dark border placeholder:text-muted focus:ring focus:ring-primary-focus focus:border-primary"
+        [attr.aria-label]="label()"
+        [min]="min()"
+        [max]="max()"
+        [step]="step()"
+        [currency]="currency() || 'USD'"
+      />
+    }
     @case ('toggle') {
       <label class="inline-flex items-center cursor-pointer">
         <input

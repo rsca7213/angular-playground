@@ -20,8 +20,6 @@ export class ApiAuth {
   private readonly authState = inject(AuthState);
   private readonly router = inject(Router);
 
-  public constructor() {}
-
   public async login(request: IApiLoginUserBody): Promise<IAuthUser | IApiErrorResponse> {
     // Attempt a login request
     const response = await firstValueFrom(

@@ -11,7 +11,7 @@ import { TAppColors } from '../../types/colors';
   providers: [provideIcons({ heroXMarkSolid })]
 })
 export class Toast {
-  protected display: boolean = false;
+  protected display = false;
   public readonly message = input.required<string>();
   public readonly color = input.required<TAppColors>();
 

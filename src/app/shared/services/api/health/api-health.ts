@@ -10,8 +10,6 @@ import { IApiHealthCheckResponse } from '../../../dtos/api/health/api-health-che
 export class ApiHealth {
   private readonly http = inject(HttpClient);
 
-  public constructor() {}
-
   public check(): Observable<IApiHealthCheckResponse> {
     return this.http.get<IApiHealthCheckResponse>(`${ENVIRONMENT.apiUrl}/actuator/health`);
   }

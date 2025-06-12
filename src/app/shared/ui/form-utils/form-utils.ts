@@ -71,7 +71,7 @@ export abstract class FormUtils {
 
     // Iterate through the errors and return the corresponding error message
     for (const errorKey in errors) {
-      if (errors.hasOwnProperty(errorKey)) {
+      if (Object.prototype.hasOwnProperty.call(errors, errorKey)) {
         // Check if the error message exists in the formErrorMessages
         const errorMessage = this.formErrorMessages[name]?.[errorKey];
         if (errorMessage) {

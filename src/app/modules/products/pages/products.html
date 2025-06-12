@@ -7,9 +7,7 @@
     <ng-icon name="heroShoppingCartSolid"> </ng-icon>
     <span class="ml-2">Products</span>
   </div>
-  <app-create-product-dialog
-    (productCreated)="handleProductCreated($event)"
-  ></app-create-product-dialog>
+  <app-create-product-dialog (productCreated)="handleProductCreated()"></app-create-product-dialog>
 </div>
 
 <div class="mb-3">

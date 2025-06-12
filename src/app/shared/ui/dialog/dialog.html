@@ -1,4 +1,4 @@
-<div (click)="open()" class="inline p-0 m-0">
+<div (click)="open()" (keyup.enter)="open()" class="inline p-0 m-0" tabindex="0">
   <ng-content select="[toggle]"> </ng-content>
 </div>
 

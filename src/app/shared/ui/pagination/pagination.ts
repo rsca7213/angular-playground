@@ -1,4 +1,4 @@
-import { Component, computed, input, model, output } from '@angular/core';
+import { Component, computed, model, output } from '@angular/core';
 import { IApiPaginationResponse } from '../../dtos/api/pagination-response';
 import { MAX_PAGES_TO_SHOW } from '../../constants/pagination';
 import { Button } from '../button/button';

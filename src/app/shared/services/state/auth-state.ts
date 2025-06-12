@@ -11,8 +11,6 @@ export class AuthState {
   private authUser: IAuthUser | null = null;
   private isAuthenticated = false;
 
-  public constructor() {}
-
   // Sets the current user and authentication status
   public setAuthUser(user?: IAuthUser | IApiErrorResponse): boolean {
     // If no user is provided, clear the authentication state

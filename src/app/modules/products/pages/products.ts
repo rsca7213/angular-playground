@@ -62,7 +62,7 @@ export class Products implements OnInit {
     this.goToPage(1);
   }
 
-  public handleProductCreated(product: IApiListProductsResponse): void {
+  public handleProductCreated(): void {
     // Re-fetch products after a new product is created
     this.fetchProducts();
 

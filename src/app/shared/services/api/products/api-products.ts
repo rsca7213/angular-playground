@@ -14,8 +14,6 @@ import { IApiCreateProductResponse } from '../../../dtos/api/products/api-create
 export class ApiProducts {
   private readonly http = inject(HttpClient);
 
-  public constructor() {}
-
   public list(
     query: IApiListProductsQuery
   ): Observable<IApiPaginationResponse<IApiListProductsResponse>> {

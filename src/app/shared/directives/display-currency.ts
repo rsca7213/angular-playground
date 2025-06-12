@@ -15,8 +15,6 @@ export class DisplayCurrency implements OnInit {
   public readonly control = inject(NgControl);
   public readonly currencyPipe = inject(CurrencyPipe);
 
-  public constructor() {}
-
   public ngOnInit(): void {
     this.formatValue();
   }
@@ -72,7 +70,7 @@ export class DisplayCurrency implements OnInit {
   }
 
   private formatValue(): void {
-    let rawValue: string = this.element.nativeElement.value;
+    const rawValue: string = this.element.nativeElement.value;
     let value: string = rawValue;
 
     // If the value is empty, set it to an empty string

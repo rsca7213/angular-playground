@@ -19,11 +19,11 @@ export class Dialog implements OnInit {
   // Dialog content reference
   protected readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
 
-  protected open(): void {
+  public open(): void {
     this.dialog().nativeElement.showModal();
   }
 
-  protected close(): void {
+  public close(): void {
     this.dialog().nativeElement.close();
   }
 

@@ -9,6 +9,9 @@
         [required]="required()"
         [formControl]="control()"
         [placeholder]="placeholder()"
+        [ngClass]="{
+          'text-error border-error': error() && error()!.length > 0
+        }"
         class="bg-light w-full min-h-11 focus:outline-none p-2 rounded-xl border-dark border placeholder:text-muted focus:ring focus:ring-primary-focus focus:border-primary"
         [attr.aria-label]="label()"
       />
@@ -21,6 +24,9 @@
         [required]="required()"
         [formControl]="control()"
         [placeholder]="placeholder()"
+        [ngClass]="{
+          'text-error border-error': error() && error()!.length > 0
+        }"
         class="bg-light w-full min-h-11 focus:outline-none p-2 rounded-xl border-dark border placeholder:text-muted focus:ring focus:ring-primary-focus focus:border-primary"
         [attr.aria-label]="label()"
       />
@@ -31,6 +37,9 @@
         [id]="id()"
         [required]="required()"
         [formControl]="control()"
+        [ngClass]="{
+          'text-error border-error': error() && error()!.length > 0
+        }"
         class="bg-light w-full min-h-11 focus:outline-none p-2 rounded-xl border-dark border placeholder:text-muted focus:ring focus:ring-primary-focus focus:border-primary"
         [attr.aria-label]="label()"
       >
@@ -50,6 +59,9 @@
         [required]="required()"
         [formControl]="control()"
         [placeholder]="placeholder()"
+        [ngClass]="{
+          'text-error border-error': error() && error()!.length > 0
+        }"
         class="bg-light min-h-11 w-full focus:outline-none p-2 rounded-xl border-dark border placeholder:text-muted focus:ring focus:ring-primary-focus focus:border-primary"
         [attr.aria-label]="label()"
         [min]="min()"
@@ -66,6 +78,9 @@
         [required]="required()"
         [formControl]="control()"
         [placeholder]="placeholder()"
+        [ngClass]="{
+          'text-error border-error': error() && error()!.length > 0
+        }"
         class="bg-light min-h-11 w-full focus:outline-none p-2 rounded-xl border-dark border placeholder:text-muted focus:ring focus:ring-primary-focus focus:border-primary"
         [attr.aria-label]="label()"
         [min]="min()"
@@ -91,7 +106,14 @@
       </label>
     }
   }
-  @if (hint()) {
+  @if (hint() && !error()) {
     <p class="text-xs text-muted mt-1 ml-2">{{ hint() }}</p>
+  }
+
+  @if (error()) {
+    <p class="text-xs text-error mt-1 ml-2 flex items-center">
+      <ng-icon name="heroExclamationTriangle"> </ng-icon>
+      <span class="ml-1"> {{ error() }}</span>
+    </p>
   }
 </div>

@@ -3,11 +3,15 @@ import { TFormInputType } from '../../types/form-inputs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TSelectOptions } from '../../types/select-options';
 import { DisplayCurrency } from '../../directives/display-currency';
+import { NgClass } from '@angular/common';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { heroExclamationTriangle } from '@ng-icons/heroicons/outline';
 
 @Component({
   selector: 'app-form-input',
-  imports: [ReactiveFormsModule, DisplayCurrency],
-  templateUrl: './form-input.html'
+  imports: [ReactiveFormsModule, DisplayCurrency, NgClass, NgIcon],
+  templateUrl: './form-input.html',
+  providers: [provideIcons({ heroExclamationTriangle })]
 })
 export class FormInput<T> {
   // Form input configuration properties

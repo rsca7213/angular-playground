@@ -48,3 +48,7 @@ th {
 table {
   @apply text-left;
 }
+
+dialog::backdrop {
+  @apply bg-dark/75;
+}

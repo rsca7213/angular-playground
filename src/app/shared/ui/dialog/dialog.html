@@ -1,0 +1,34 @@
+<div (click)="open()" class="inline p-0 m-0">
+  <ng-content select="[toggle]"> </ng-content>
+</div>
+
+<dialog #dialog>
+  <div class="fixed min-h-screen min-w-screen flex justify-center">
+    <app-card
+      class="p-2 min-w-screen sm:min-w-3/4 md:min-w-1/2 xl:min-w-1/3"
+      [ngClass]="{
+        'mt-4': position() === 'top',
+        'mb-4 mt-auto': position() === 'bottom',
+        'm-auto': position() === 'center'
+      }"
+    >
+      <div #header class="flex items-center mb-3">
+        <div>
+          <ng-content select="[header]"> </ng-content>
+        </div>
+
+        <app-icon-button color="dark" data-close class="ml-auto">
+          <ng-icon name="heroXMarkSolid"> </ng-icon>
+        </app-icon-button>
+      </div>
+
+      <div #content class="mb-3">
+        <ng-content select="[content]"></ng-content>
+      </div>
+
+      <div #footer>
+        <ng-content select="[footer]"> </ng-content>
+      </div>
+    </app-card>
+  </div>
+</dialog>

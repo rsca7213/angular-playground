@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, viewChild } from '@angular/core';
 import { ProductsTable } from '../ui/products-table/products-table';
 import { IApiListProductsResponse } from '../../../shared/dtos/api/products/api-list-products-response';
 import { ApiProducts } from '../../../shared/services/api/products/api-products';
@@ -8,11 +8,17 @@ import { IApiPaginationResponse } from '../../../shared/dtos/api/pagination-resp
 import { getDefaultPagination } from '../../../shared/utils/default-pagination';
 import { ProductFilters } from '../ui/product-filters/product-filters';
 import { IApiListProductsQuery } from '../../../shared/dtos/api/products/api-list-products-query';
+import { CreateProductDialog } from '../ui/create-product-dialog/create-product-dialog';
+import { Toast } from '../../../shared/ui/toast/toast';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { heroCheckCircleSolid } from '@ng-icons/heroicons/solid';
+import { Alert } from '../../../shared/ui/alert/alert';
 
 @Component({
   selector: 'app-products',
-  imports: [ProductsTable, Pagination, ProductFilters],
-  templateUrl: './products.html'
+  imports: [ProductsTable, Pagination, ProductFilters, CreateProductDialog, Toast, NgIcon],
+  templateUrl: './products.html',
+  providers: [provideIcons({ heroCheckCircleSolid })]
 })
 export class Products implements OnInit {
   private readonly apiProducts = inject(ApiProducts);
@@ -22,6 +28,8 @@ export class Products implements OnInit {
   };
   protected loading = true;
   protected errorMessage: string | null = null;
+
+  protected readonly productCreatedToast = viewChild.required<Toast>('productCreatedToast');
 
   public ngOnInit(): void {
     this.fetchProducts();
@@ -35,7 +43,7 @@ export class Products implements OnInit {
         this.products = data;
         this.loading = false;
       },
-      error: (err: { error: IApiErrorResponse }) => {
+      error: (err: IApiErrorResponse) => {
         this.errorMessage = err.error.message;
         this.loading = false;
       }
@@ -53,5 +61,13 @@ export class Products implements OnInit {
 
     // Reset the page to 1 when applying filters (also performs a fetch)
     this.goToPage(1);
+  }
+
+  public handleProductCreated(product: IApiListProductsResponse): void {
+    // Re-fetch products after a new product is created
+    this.fetchProducts();
+
+    // Show a toast notification for product creation
+    this.productCreatedToast().show();
   }
 }

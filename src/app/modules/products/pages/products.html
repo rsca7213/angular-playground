@@ -1,3 +1,13 @@
+<app-toast message="Product created succesfully!" color="success" #productCreatedToast>
+  <ng-icon name="heroCheckCircleSolid"> </ng-icon>
+</app-toast>
+
+<div class="flex justify-end">
+  <app-create-product-dialog
+    (productCreated)="handleProductCreated($event)"
+  ></app-create-product-dialog>
+</div>
+
 <div class="mb-3">
   <app-product-filters (apply)="applyFilters($event)"></app-product-filters>
 </div>

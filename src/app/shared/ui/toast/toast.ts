@@ -11,6 +11,20 @@ import { TAppColors } from '../../types/colors';
   providers: [provideIcons({ heroXMarkSolid })]
 })
 export class Toast {
+  protected display: boolean = false;
   public readonly message = input.required<string>();
   public readonly color = input.required<TAppColors>();
+
+  public show(): void {
+    this.display = true;
+
+    // Automatically hide the toast after 5 seconds
+    setTimeout(() => {
+      this.hide();
+    }, 5000);
+  }
+
+  public hide(): void {
+    this.display = false;
+  }
 }

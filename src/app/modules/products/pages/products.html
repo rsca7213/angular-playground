@@ -2,7 +2,11 @@
   <ng-icon name="heroCheckCircleSolid"> </ng-icon>
 </app-toast>
 
-<div class="flex justify-end">
+<div class="flex mb-3 justify-between">
+  <div class="flex-centered-v-h text-2xl font-semibold">
+    <ng-icon name="heroShoppingCartSolid"> </ng-icon>
+    <span class="ml-2">Products</span>
+  </div>
   <app-create-product-dialog
     (productCreated)="handleProductCreated($event)"
   ></app-create-product-dialog>

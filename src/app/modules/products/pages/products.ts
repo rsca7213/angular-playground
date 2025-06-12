@@ -11,14 +11,13 @@ import { IApiListProductsQuery } from '../../../shared/dtos/api/products/api-lis
 import { CreateProductDialog } from '../ui/create-product-dialog/create-product-dialog';
 import { Toast } from '../../../shared/ui/toast/toast';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { heroCheckCircleSolid } from '@ng-icons/heroicons/solid';
-import { Alert } from '../../../shared/ui/alert/alert';
+import { heroCheckCircleSolid, heroShoppingCartSolid } from '@ng-icons/heroicons/solid';
 
 @Component({
   selector: 'app-products',
   imports: [ProductsTable, Pagination, ProductFilters, CreateProductDialog, Toast, NgIcon],
   templateUrl: './products.html',
-  providers: [provideIcons({ heroCheckCircleSolid })]
+  providers: [provideIcons({ heroCheckCircleSolid, heroShoppingCartSolid })]
 })
 export class Products implements OnInit {
   private readonly apiProducts = inject(ApiProducts);

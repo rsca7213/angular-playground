@@ -34,6 +34,17 @@ export class Login extends FormUtils {
     password: new FormControl<string>('', [Validators.required, Validators.minLength(10)])
   });
 
+  protected override readonly formErrorMessages = {
+    email: {
+      required: 'Email is required',
+      email: 'Please enter a valid email address'
+    },
+    password: {
+      required: 'Password is required',
+      minlength: 'Password must be at least 10 characters long'
+    }
+  };
+
   protected override async submitLogic(): Promise<void> {
     // Perform the login operation using the API service
     const result = await this.apiAuth.login({
@@ -42,8 +53,8 @@ export class Login extends FormUtils {
     });
 
     // Check if the result is an error response
-    if ('errorCode' in result) {
-      this.submissionError.set(result.message);
+    if ('error' in result) {
+      this.submissionError.set(result.error.message);
       return;
     }
 

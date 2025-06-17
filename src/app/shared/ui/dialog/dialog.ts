@@ -1,4 +1,4 @@
-import { Component, ElementRef, input, OnInit, viewChild } from '@angular/core';
+import { Component, ElementRef, input, OnInit, output, viewChild } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroWrenchSolid, heroXMarkSolid } from '@ng-icons/heroicons/solid';
 import { IconButton } from '../icon-button/icon-button';
@@ -19,12 +19,18 @@ export class Dialog implements OnInit {
   // Dialog content reference
   protected readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
 
+  // Output signals
+  public readonly opened = output<void>();
+  public readonly closed = output<void>();
+
   public open(): void {
     this.dialog().nativeElement.showModal();
+    this.opened.emit();
   }
 
   public close(): void {
     this.dialog().nativeElement.close();
+    this.closed.emit();
   }
 
   private setupClosers(): void {

@@ -37,12 +37,19 @@
   ></app-delete-product-dialog>
 </ng-template>
 
+<ng-template #viewActionTemplate let-id="id">
+  <app-icon-button color="dark" [routerLink]="['/products', id]">
+    <ng-icon name="heroEyeSolid"> </ng-icon>
+  </app-icon-button>
+</ng-template>
+
 <app-products-table
   [data]="products.items"
   [loading]="loading"
   [errorMessage]="errorMessage"
   [updateActionTemplate]="updateActionTemplate"
   [deleteActionTemplate]="deleteActionTemplate"
+  [viewActionTemplate]="viewActionTemplate"
 >
 </app-products-table>
 

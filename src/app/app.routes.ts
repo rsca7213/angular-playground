@@ -24,6 +24,13 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'products/:id',
+    loadComponent: () => import('./modules/products/pages/view-product').then((m) => m.ViewProduct),
+    title: 'Product',
+    data: { needsAuth: true },
+    canActivate: [authGuard]
+  },
+  {
     path: 'login',
     loadComponent: () => import('./core/pages/login/login').then((m) => m.Login),
     title: 'Login',

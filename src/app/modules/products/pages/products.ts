@@ -11,10 +11,16 @@ import { IApiListProductsQuery } from '../../../shared/dtos/api/products/api-lis
 import { CreateProductDialog } from '../ui/create-product-dialog/create-product-dialog';
 import { Toast } from '../../../shared/ui/toast/toast';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { heroCheckCircleSolid, heroShoppingCartSolid } from '@ng-icons/heroicons/solid';
+import {
+  heroCheckCircleSolid,
+  heroEyeSolid,
+  heroShoppingCartSolid
+} from '@ng-icons/heroicons/solid';
 import { UpdateProductDialog } from '../ui/update-product-dialog/update-product-dialog';
 import { IApiUpdateProductResponse } from '../../../shared/dtos/api/products/api-update-product-response';
 import { DeleteProductDialog } from '../ui/delete-product-dialog/delete-product-dialog';
+import { IconButton } from '../../../shared/ui/icon-button/icon-button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -26,10 +32,12 @@ import { DeleteProductDialog } from '../ui/delete-product-dialog/delete-product-
     UpdateProductDialog,
     DeleteProductDialog,
     Toast,
-    NgIcon
+    IconButton,
+    NgIcon,
+    RouterLink
   ],
   templateUrl: './products.html',
-  providers: [provideIcons({ heroCheckCircleSolid, heroShoppingCartSolid })]
+  providers: [provideIcons({ heroCheckCircleSolid, heroShoppingCartSolid, heroEyeSolid })]
 })
 export class Products implements OnInit {
   private readonly apiProducts = inject(ApiProducts);

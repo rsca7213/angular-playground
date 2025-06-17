@@ -1,0 +1,28 @@
+@if (product) {
+  @if (product.imageUrl) {
+    <img [src]="product.imageUrl" alt="Product's image" />
+  }
+
+  <ul>
+    <li>
+      <span class="font-semibold"> Name: </span>
+      {{ product.name }}
+    </li>
+    <li>
+      <span class="font-semibold"> Description: </span>
+      {{ product.description }}
+    </li>
+    <li>
+      <span class="font-semibold"> Price: </span>
+      {{ product.price | currency }}
+    </li>
+    <li>
+      <span class="font-semibold"> Category: </span>
+      {{ product.category | deEnum }}
+    </li>
+    <li>
+      <span class="font-semibold"> Available Stock: </span>
+      {{ product.stockQuantity }}
+    </li>
+  </ul>
+}

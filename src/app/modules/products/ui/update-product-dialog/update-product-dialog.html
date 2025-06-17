@@ -1,0 +1,104 @@
+<app-dialog position="center" (opened)="setup()">
+  <app-icon-button toggle color="dark">
+    <ng-icon name="heroPencilSolid"> </ng-icon>
+  </app-icon-button>
+
+  <div header class="flex-centered-v-h text-lg">
+    <ng-icon name="heroPencilSolid"></ng-icon>
+    <span class="ml-1">Update Product</span>
+  </div>
+
+  <div content>
+    <form [formGroup]="form">
+      @if (submissionError()) {
+        <div class="mt-2">
+          <app-alert
+            [message]="submissionError()!"
+            color="error"
+            (dismissed)="resetSubmissionError()"
+          >
+            <ng-icon name="heroExclamationTriangle"> </ng-icon>
+          </app-alert>
+        </div>
+      }
+
+      <div>
+        <app-form-input
+          type="text"
+          placeholder="Name of the product..."
+          hint="Unique name of the product"
+          id="name"
+          label="Name"
+          [required]="true"
+          [control]="form.controls.name"
+          [error]="getFormControlErrors('name')"
+        ></app-form-input>
+      </div>
+      <div>
+        <app-form-input
+          type="text"
+          placeholder="Description of the product..."
+          hint="Describe the product in detail"
+          id="description"
+          label="Description"
+          [required]="true"
+          [control]="form.controls.description"
+          [error]="getFormControlErrors('description')"
+        ></app-form-input>
+      </div>
+      <div>
+        <app-form-input
+          type="number"
+          placeholder="Available stock of the product..."
+          hint="Available stock to sell of the product"
+          id="stock"
+          label="Available Stock"
+          [required]="true"
+          [control]="form.controls.stockQuantity"
+          [error]="getFormControlErrors('stockQuantity')"
+        ></app-form-input>
+      </div>
+      <div>
+        <app-form-input
+          type="select"
+          id="category"
+          label="Category"
+          hint="Select a product category"
+          placeholder="Select a Category..."
+          [required]="true"
+          [control]="form.controls.category"
+          [error]="getFormControlErrors('category')"
+          [options]="productCategoryOptions"
+        ></app-form-input>
+      </div>
+      <div>
+        <app-form-input
+          type="currency"
+          placeholder="Price of the product..."
+          hint="Price of sale of the product in USD"
+          id="price"
+          label="Price"
+          [required]="true"
+          [control]="form.controls.price"
+          [error]="getFormControlErrors('price')"
+        ></app-form-input>
+      </div>
+    </form>
+  </div>
+
+  <div footer class="flex justify-end space-x-2">
+    <app-button title="Close" color="dark" data-close>
+      <ng-icon name="heroXMarkSolid"></ng-icon>
+    </app-button>
+
+    <app-button
+      title="Update"
+      color="primary"
+      (click)="submitForm()"
+      [disabled]="form.invalid || loading()"
+      [loading]="loading()"
+    >
+      <ng-icon name="heroCheckCircleSolid"> </ng-icon>
+    </app-button>
+  </div>
+</app-dialog>

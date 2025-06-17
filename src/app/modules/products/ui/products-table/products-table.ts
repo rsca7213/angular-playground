@@ -2,11 +2,12 @@ import { Component, input } from '@angular/core';
 import { provideTableIcons, provideTableImports, Table } from '../../../../shared/ui/table/table';
 import { IApiListProductsResponse } from '../../../../shared/dtos/api/products/api-list-products-response';
 import { ITableConfig } from '../../../../shared/interfaces/ui/table';
-import { CurrencyPipe, TitleCasePipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
+import { DeEnumPipe } from '../../../../shared/pipes/de-enum-pipe';
 
 @Component({
   selector: 'app-products-table',
-  imports: provideTableImports,
+  imports: [...provideTableImports],
   templateUrl: '../../../../shared/ui/table/table.html',
   providers: [provideTableIcons()]
 })
@@ -32,7 +33,7 @@ export class ProductsTable extends Table<IApiListProductsResponse> {
       {
         name: 'category',
         label: 'Category',
-        applyPipes: [new TitleCasePipe()]
+        applyPipes: [new DeEnumPipe()]
       },
       {
         name: 'price',

@@ -12,10 +12,20 @@ import { CreateProductDialog } from '../ui/create-product-dialog/create-product-
 import { Toast } from '../../../shared/ui/toast/toast';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroCheckCircleSolid, heroShoppingCartSolid } from '@ng-icons/heroicons/solid';
+import { UpdateProductDialog } from '../ui/update-product-dialog/update-product-dialog';
+import { IApiUpdateProductResponse } from '../../../shared/dtos/api/products/api-update-product-response';
 
 @Component({
   selector: 'app-products',
-  imports: [ProductsTable, Pagination, ProductFilters, CreateProductDialog, Toast, NgIcon],
+  imports: [
+    ProductsTable,
+    Pagination,
+    ProductFilters,
+    CreateProductDialog,
+    UpdateProductDialog,
+    Toast,
+    NgIcon
+  ],
   templateUrl: './products.html',
   providers: [provideIcons({ heroCheckCircleSolid, heroShoppingCartSolid })]
 })
@@ -29,6 +39,7 @@ export class Products implements OnInit {
   protected errorMessage: string | null = null;
 
   protected readonly productCreatedToast = viewChild.required<Toast>('productCreatedToast');
+  protected readonly productUpdatedToast = viewChild.required<Toast>('productUpdatedToast');
 
   public ngOnInit(): void {
     this.fetchProducts();
@@ -68,5 +79,19 @@ export class Products implements OnInit {
 
     // Show a toast notification for product creation
     this.productCreatedToast().show();
+  }
+
+  public handleProductUpdated(response: IApiUpdateProductResponse): void {
+    // Find the updated product's index in the current list by ID
+    const index = this.products.items.findIndex((product) => product.id === response.id);
+
+    // If not found, return early
+    if (index === -1) return;
+
+    // Update the product in the current list
+    this.products.items[index] = response;
+
+    // Show a toast notification for product update
+    this.productUpdatedToast().show();
   }
 }

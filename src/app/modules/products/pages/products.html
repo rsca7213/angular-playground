@@ -1,6 +1,9 @@
 <app-toast message="Product created succesfully!" color="success" #productCreatedToast>
   <ng-icon name="heroCheckCircleSolid"> </ng-icon>
 </app-toast>
+<app-toast message="Product updated succesfully" color="success" #productUpdatedToast>
+  <ng-icon name="heroCheckCircleSolid"> </ng-icon>
+</app-toast>
 
 <div class="flex mb-3 justify-between">
   <div class="flex-centered-v-h text-2xl font-semibold">
@@ -13,11 +16,21 @@
 <div class="mb-3">
   <app-product-filters (apply)="applyFilters($event)"></app-product-filters>
 </div>
+
+<ng-template #updateActionTemplate let-product="item" let-id="id">
+  <app-update-product-dialog
+    [product]="product"
+    [id]="id"
+    (productUpdated)="handleProductUpdated($event)"
+  ></app-update-product-dialog>
+</ng-template>
 <app-products-table
   [data]="products.items"
   [loading]="loading"
   [errorMessage]="errorMessage"
-></app-products-table>
+  [updateActionTemplate]="updateActionTemplate"
+>
+</app-products-table>
 
 @if (!loading && !errorMessage) {
   <div class="mt-3">

@@ -14,6 +14,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroCheckCircleSolid, heroShoppingCartSolid } from '@ng-icons/heroicons/solid';
 import { UpdateProductDialog } from '../ui/update-product-dialog/update-product-dialog';
 import { IApiUpdateProductResponse } from '../../../shared/dtos/api/products/api-update-product-response';
+import { DeleteProductDialog } from '../ui/delete-product-dialog/delete-product-dialog';
 
 @Component({
   selector: 'app-products',
@@ -23,6 +24,7 @@ import { IApiUpdateProductResponse } from '../../../shared/dtos/api/products/api
     ProductFilters,
     CreateProductDialog,
     UpdateProductDialog,
+    DeleteProductDialog,
     Toast,
     NgIcon
   ],
@@ -40,6 +42,7 @@ export class Products implements OnInit {
 
   protected readonly productCreatedToast = viewChild.required<Toast>('productCreatedToast');
   protected readonly productUpdatedToast = viewChild.required<Toast>('productUpdatedToast');
+  protected readonly productDeletedToast = viewChild.required<Toast>('productDeletedToast');
 
   public ngOnInit(): void {
     this.fetchProducts();
@@ -93,5 +96,13 @@ export class Products implements OnInit {
 
     // Show a toast notification for product update
     this.productUpdatedToast().show();
+  }
+
+  public handleProductDeleted(id: string): void {
+    // Remove the deleted product from the current list
+    this.products.items = this.products.items.filter((product) => product.id !== id);
+
+    // Show a toast notification for product deletion
+    this.productDeletedToast().show();
   }
 }

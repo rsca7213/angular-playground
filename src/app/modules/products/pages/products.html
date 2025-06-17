@@ -4,6 +4,9 @@
 <app-toast message="Product updated succesfully" color="success" #productUpdatedToast>
   <ng-icon name="heroCheckCircleSolid"> </ng-icon>
 </app-toast>
+<app-toast message="Product deleted succesfully" color="success" #productDeletedToast>
+  <ng-icon name="heroCheckCircleSolid"> </ng-icon>
+</app-toast>
 
 <div class="flex mb-3 justify-between">
   <div class="flex-centered-v-h text-2xl font-semibold">
@@ -24,11 +27,22 @@
     (productUpdated)="handleProductUpdated($event)"
   ></app-update-product-dialog>
 </ng-template>
+
+<ng-template #deleteActionTemplate let-product="item" let-id="id">
+  <app-delete-product-dialog
+    [name]="product.name"
+    [description]="product.description"
+    [id]="id"
+    (productDeleted)="handleProductDeleted($event)"
+  ></app-delete-product-dialog>
+</ng-template>
+
 <app-products-table
   [data]="products.items"
   [loading]="loading"
   [errorMessage]="errorMessage"
   [updateActionTemplate]="updateActionTemplate"
+  [deleteActionTemplate]="deleteActionTemplate"
 >
 </app-products-table>
 

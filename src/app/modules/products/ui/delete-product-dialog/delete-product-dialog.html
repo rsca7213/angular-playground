@@ -1,0 +1,35 @@
+<app-dialog position="center">
+  <app-icon-button toggle color="dark">
+    <ng-icon name="heroTrashSolid"> </ng-icon>
+  </app-icon-button>
+
+  <div header class="flex-centered-v-h text-lg">
+    <ng-icon name="heroTrashSolid"></ng-icon>
+    <span class="ml-1">Delete Product</span>
+  </div>
+
+  <div content class="text-center">
+    <p>Are you sure you want to delete this product?</p>
+    <small class="text-error font-semibold"> This action cannot be undone </small>
+    <p class="font-semibold mt-2">{{ name() }}</p>
+    <small class="text-muted">
+      {{ description() }}
+    </small>
+  </div>
+
+  <div footer class="flex justify-end space-x-2">
+    <app-button title="Close" color="dark" data-close>
+      <ng-icon name="heroXMarkSolid"></ng-icon>
+    </app-button>
+
+    <app-button
+      title="Delete"
+      color="primary"
+      (click)="submitForm()"
+      [disabled]="form.invalid || loading()"
+      [loading]="loading()"
+    >
+      <ng-icon name="heroCheckCircleSolid"> </ng-icon>
+    </app-button>
+  </div>
+</app-dialog>

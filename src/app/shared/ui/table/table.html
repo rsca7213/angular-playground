@@ -77,19 +77,22 @@
               <td>
                 <div class="flex-centered-v-h">
                   @if (config.actions.view) {
-                    <app-icon-button color="dark">
-                      <ng-icon name="heroEyeSolid"></ng-icon>
-                    </app-icon-button>
+                    <ng-container
+                      *ngTemplateOutlet="viewActionTemplate(); context: { item, id: item.id }"
+                    >
+                    </ng-container>
                   }
                   @if (config.actions.update) {
-                    <app-icon-button color="dark">
-                      <ng-icon name="heroPencilSolid"></ng-icon>
-                    </app-icon-button>
+                    <ng-container
+                      *ngTemplateOutlet="updateActionTemplate(); context: { item, id: item.id }"
+                    >
+                    </ng-container>
                   }
                   @if (config.actions.delete) {
-                    <app-icon-button color="dark">
-                      <ng-icon name="heroTrashSolid"></ng-icon>
-                    </app-icon-button>
+                    <ng-container
+                      *ngTemplateOutlet="deleteActionTemplate(); context: { item, id: item.id }"
+                    >
+                    </ng-container>
                   }
                 </div>
               </td>

@@ -4,7 +4,14 @@
   </div>
   <h1 class="text-4xl font-bold mb-4">404 - Page Not Found</h1>
   <p class="text-lg mb-6">The page you are looking for does not exist.</p>
-  <app-button color="primary" title="Go back to Home" redirectTo="/">
-    <ng-icon name="heroHomeSolid"> </ng-icon>
-  </app-button>
+  <div class="flex-centered-v-h space-x-2">
+    <app-button color="secondary" title="Home" redirectTo="/">
+      <ng-icon name="heroHomeSolid"> </ng-icon>
+    </app-button>
+    @if (previousUrl) {
+      <app-button color="primary" title="Go Back" [routerLink]="previousUrl">
+        <ng-icon name="heroArrowLeftSolid"> </ng-icon>
+      </app-button>
+    }
+  </div>
 </div>

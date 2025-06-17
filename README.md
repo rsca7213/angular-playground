@@ -1,59 +1,106 @@
-# AngularPlayground
+# Angular + Tailwind Playground
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.1.
+This is a simple Angular + Tailwind SPA developed for learning purposes.
 
-## Development server
+## 🚀 Getting Started:
 
-To start a local development server, run:
+1. Clone the git repository:
+
+   ```bash
+   git clone https://github.com/rsca7213/angular-playground
+
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd angular-playground
+   ```
+
+3. Open the project in your favorite IDE (e.g., VS Code, WebStorm).
+
+4. Ensure you have the required dependencies installed:
+   - Node.js (v22 or later, LTS recommended)
+   - NPM (Should be installed with Node.js)
+   - Angular CLI (v20 or later)
+5. Install the project dependencies:
+   ```bash
+    npm install
+   ```
+6. Start the development server:
+
+   ```bash
+   npm run start
+   ```
+
+7. The application should now be running at `http://localhost:4200/`. Open this URL in your web browser to view the app.
+
+## 🛫 Features:
+
+- CRUD operations for managing an example list of Products
+- Responsive and modern design using Tailwind CSS
+- Login/Auth functionality using Angular Guards
+- Re-usable common components like: Tables, Buttons, Forms, Dialogs, Alerts, Toasts and more
+- Environment configurations for different stages (development, production, staging, testing)
+- Angular Proxy configuration for API calls on development server
+- Angular Routing for navigation, including lazy loading of modules, guard protection and 404 page
+- Custom Angular Attribute Directives and Angular Pipes for data transformation
+
+## 🛜 Additional Repositories:
+
+- **Back-End**: [Spring Boot Playground](https://github.com/rsca7213/spring-boot-playground)
+  - Developed with Java 21, Spring Boot 3.4 and PostgreSQL 17
+
+## 🧪 Running Tests:
+
+To run the tests for this project, use the following command:
 
 ```bash
-ng serve
+npm run test
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📦 Building the Project:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+To build the project for production, run:
 
 ```bash
-ng generate component component-name
+npm run build:production
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+This will create a `dist/` directory with the production build of your application.
+
+## 🌎 Environment Variables:
+
+To configure variables for the different application environments (like development, production, etc.), you can
+modify the following files:
+
+- `src/environments/environment.ts` for development
+- `src/environments/environment.production.ts` for production
+- `src/environments/environment.staging.ts` for staging
+- `src/environments/environment.test.ts` for testing
+
+> Note: This project uses Angular's built-in environment system to manage different configurations for various environments.
+
+## ✅ Linting and Formatting:
+
+To ensure code quality and consistency, this project uses ESLint and Prettier.
+
+You can run the following command to verify the code quality:
 
 ```bash
-ng generate --help
+npm run lint
 ```
 
-## Building
+## 📦 Project Dependencies:
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Language**: TypeScript (v5.8 or later)
+- **Runtime**: Node.js (v22 or later, LTS recommended)
+- **Package Manager**: NPM (should be installed with Node.js)
+- **CLI**: Angular CLI v20
+- **Main Framework**: Angular v20
+- **Styling**: Tailwind CSS v4.1
+- **Linting**: ESLint
+- **Formatting**: Prettier
+- **Additional Libraries**:
+  - Ng Icons (Tailwind Heroicons)
+  - PostCSS

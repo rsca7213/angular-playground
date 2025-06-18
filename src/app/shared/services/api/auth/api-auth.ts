@@ -1,6 +1,4 @@
-// api-auth.ts (Revised)
-
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IApiLoginUserBody } from '../../../dtos/api/auth/api-login-user-body';
 import { firstValueFrom } from 'rxjs';
@@ -24,7 +22,7 @@ export class ApiAuth {
     // Attempt a login request
     const response = await firstValueFrom(
       this.http.post<IApiLoginUserResponse>(`${ENVIRONMENT.apiUrl}/auth/login`, request)
-    ).catch((err: HttpErrorResponse) => err.error as IApiErrorResponse);
+    ).catch((err: IApiErrorResponse) => err);
 
     // If the response is an error, clear state and return the error
     if ('errorCode' in response) {
@@ -40,7 +38,7 @@ export class ApiAuth {
     // Fetch the current user details
     const response = await firstValueFrom(
       this.http.get<IApiCurrentUserResponse>(`${ENVIRONMENT.apiUrl}/auth/current-user`)
-    ).catch((err: HttpErrorResponse) => err.error as IApiErrorResponse);
+    ).catch((err: IApiErrorResponse) => err);
 
     // Determine if the user is authenticated based on the response
     const isUserAuthenticated = this.authState.setAuthUser(response);
@@ -57,9 +55,7 @@ export class ApiAuth {
   public async logout(): Promise<void> {
     // Attempt to log out the user
     await firstValueFrom(this.http.post(`${ENVIRONMENT.apiUrl}/auth/logout`, {})).catch(
-      (err: HttpErrorResponse) => {
-        return err.error as IApiErrorResponse;
-      }
+      (err: IApiErrorResponse) => err
     );
 
     // Clear the authentication state

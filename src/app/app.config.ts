@@ -9,12 +9,15 @@ import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authResponseInterceptor } from './shared/interceptors/auth-response-interceptor';
 import { errorInterceptor } from './shared/interceptors/error-interceptor';
+import { apiVersionInterceptor } from './shared/interceptors/api-version-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(withInterceptors([authResponseInterceptor, errorInterceptor]))
+    provideHttpClient(
+      withInterceptors([authResponseInterceptor, errorInterceptor, apiVersionInterceptor])
+    )
   ]
 };

@@ -67,7 +67,7 @@ export class Products implements OnInit {
         this.loading = false;
       },
       error: (err: IApiErrorResponse) => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err.message;
         this.loading = false;
       }
     });

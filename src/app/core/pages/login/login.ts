@@ -53,8 +53,8 @@ export class Login extends FormUtils {
     });
 
     // Check if the result is an error response
-    if ('error' in result) {
-      this.submissionError.set(result.error.message);
+    if ('errorCode' in result) {
+      this.submissionError.set(result.message);
       return;
     }
 

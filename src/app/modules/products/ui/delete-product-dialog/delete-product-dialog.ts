@@ -43,7 +43,7 @@ export class DeleteProductDialog extends FormUtils {
         this.dialog().close();
       },
       error: (err: IApiErrorResponse) => {
-        this.submissionError.set(err.error.message);
+        this.submissionError.set(err.message);
       }
     });
   }

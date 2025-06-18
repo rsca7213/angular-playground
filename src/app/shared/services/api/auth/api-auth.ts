@@ -27,7 +27,7 @@ export class ApiAuth {
     ).catch((err: HttpErrorResponse) => err.error as IApiErrorResponse);
 
     // If the response is an error, clear state and return the error
-    if ('error' in response) {
+    if ('errorCode' in response) {
       this.authState.clearAuth();
       return response;
     }

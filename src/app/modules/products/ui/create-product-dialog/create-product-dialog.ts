@@ -95,7 +95,7 @@ export class CreateProductDialog extends FormUtils {
         },
         // Handle error case by setting the submission error
         error: (err: IApiErrorResponse) => {
-          this.submissionError.set(err.error.message);
+          this.submissionError.set(err.message);
         }
       });
   }

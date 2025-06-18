@@ -1,5 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { ApiProducts } from '../../../shared/services/api/products/api-products';
 import { IApiFindProductResponse } from '../../../shared/dtos/api/products/api-find-product-response';
 import { CurrencyPipe } from '@angular/common';
@@ -12,36 +11,21 @@ import { DeEnumPipe } from '../../../shared/pipes/de-enum-pipe';
 })
 export class ViewProduct implements OnInit {
   // Injected services
-  private readonly activatedRoute = inject(ActivatedRoute);
-  private readonly router = inject(Router);
   private readonly apiProducts = inject(ApiProducts);
 
   // Route parameters
-  protected productId = '';
+  public readonly id = input.required<string>();
 
   // Data properties
   protected product: IApiFindProductResponse | null = null;
 
   // Lifecycle hooks
   public ngOnInit(): void {
-    this.setupRouteParameters();
     this.fetchProductDetails();
   }
 
-  // Private methods
-  private setupRouteParameters(): void {
-    const parameters = this.activatedRoute.snapshot.paramMap;
-
-    this.productId = parameters.get('id') ?? '';
-
-    if (!this.productId) {
-      // If no product ID is provided, return to the products page
-      this.router.navigate(['/products']);
-    }
-  }
-
   private fetchProductDetails(): void {
-    this.apiProducts.findById({ id: this.productId }).subscribe({
+    this.apiProducts.findById({ id: this.id() }).subscribe({
       next: (product) => {
         this.product = product;
       }

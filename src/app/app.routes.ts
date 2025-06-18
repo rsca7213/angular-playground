@@ -18,17 +18,21 @@ export const routes: Routes = [
   },
   {
     path: 'products',
-    loadComponent: () => import('./modules/products/pages/products').then((m) => m.Products),
-    title: 'Products',
     data: { needsAuth: true },
-    canActivate: [authGuard]
-  },
-  {
-    path: 'products/:id',
-    loadComponent: () => import('./modules/products/pages/view-product').then((m) => m.ViewProduct),
-    title: 'Product',
-    data: { needsAuth: true },
-    canActivate: [authGuard]
+    canActivate: [authGuard],
+    children: [
+      {
+        path: '',
+        title: 'Products',
+        loadComponent: () => import('./modules/products/pages/products').then((m) => m.Products)
+      },
+      {
+        path: ':id',
+        loadComponent: () =>
+          import('./modules/products/pages/view-product').then((m) => m.ViewProduct),
+        title: 'Product'
+      }
+    ]
   },
   {
     path: 'login',

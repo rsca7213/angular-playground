@@ -40,6 +40,7 @@ This is a simple Angular + Tailwind SPA developed for learning purposes.
 - CRUD operations for managing an example list of Products
 - Responsive and modern design using Tailwind CSS
 - Login/Auth functionality using Angular Guards
+- HTTP Interceptors for handling API requests and responses
 - Structural Directives for dynamic content rendering based on auth (isAuthenticated and hasRoles)
 - Re-usable common components like: Tables, Buttons, Forms, Dialogs, Alerts, Toasts and more
 - Environment configurations for different stages (development, production, staging, testing)

@@ -21,6 +21,7 @@ import { IApiUpdateProductResponse } from '../../../shared/dtos/api/products/api
 import { DeleteProductDialog } from '../ui/delete-product-dialog/delete-product-dialog';
 import { IconButton } from '../../../shared/ui/icon-button/icon-button';
 import { RouterLink } from '@angular/router';
+import { HasRoles } from '../../../shared/directives/has-roles';
 
 @Component({
   selector: 'app-products',
@@ -34,7 +35,8 @@ import { RouterLink } from '@angular/router';
     Toast,
     IconButton,
     NgIcon,
-    RouterLink
+    RouterLink,
+    HasRoles
   ],
   templateUrl: './products.html',
   providers: [provideIcons({ heroCheckCircleSolid, heroShoppingCartSolid, heroEyeSolid })]

@@ -13,7 +13,10 @@
     <ng-icon name="heroShoppingCartSolid"> </ng-icon>
     <span class="ml-2">Products</span>
   </div>
-  <app-create-product-dialog (productCreated)="handleProductCreated()"></app-create-product-dialog>
+  <app-create-product-dialog
+    (productCreated)="handleProductCreated()"
+    *appHasRoles="'ADMIN'"
+  ></app-create-product-dialog>
 </div>
 
 <div class="mb-3">
@@ -25,6 +28,7 @@
     [product]="product"
     [id]="id"
     (productUpdated)="handleProductUpdated($event)"
+    *appHasRoles="'ADMIN'"
   ></app-update-product-dialog>
 </ng-template>
 
@@ -34,6 +38,7 @@
     [description]="product.description"
     [id]="id"
     (productDeleted)="handleProductDeleted($event)"
+    *appHasRoles="'ADMIN'"
   ></app-delete-product-dialog>
 </ng-template>
 
